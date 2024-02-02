@@ -47,9 +47,8 @@ fun CupCakeApp(
     viewModel: OrderViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
     navController: NavHostController = rememberNavController()
 ) {
-
     val backStackEntry by navController.currentBackStackEntryAsState()
-    
+
 
     val currentScreen = CupcakeScreen.valueOf(
         backStackEntry?.destination?.route ?: CupcakeScreen.Start.name
