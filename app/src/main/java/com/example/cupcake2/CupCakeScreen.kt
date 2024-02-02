@@ -3,6 +3,7 @@ package com.example.cupcake2
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Icon
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -48,14 +49,21 @@ fun CupCakeApp(
 ) {
 
     val backStackEntry by navController.currentBackStackEntryAsState()
+    
 
     val currentScreen = CupcakeScreen.valueOf(
         backStackEntry?.destination?.route ?: CupcakeScreen.Start.name
     )
 
+
+    Log.i("STRING", "Current screen: ${currentScreen.toString()}")
+
+    Log.i("STRING", "backStackEntry: ${backStackEntry}")
+
     Scaffold(
         topBar = {
             CupCakeAppBar(
+
                 currentScreen = currentScreen,
                 navigationBack = navController.previousBackStackEntry != null,
                 navigateUp = { navController.navigateUp() }
@@ -123,6 +131,7 @@ fun CupCakeApp(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CupCakeAppBar(
+
     currentScreen: CupcakeScreen,
     navigationBack: Boolean,
     navigateUp: () -> Unit = {},
@@ -178,8 +187,10 @@ private fun shareOrder(context: Context, subject: String, summary: String) {
 fun CupCakeAppPreview() {
     Cupcake2Theme {
         CupCakeAppBar(
+
             currentScreen = CupcakeScreen.Start,
             navigationBack = true
+
         )
     }
 }
